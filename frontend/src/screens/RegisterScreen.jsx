@@ -64,10 +64,7 @@ export const RegisterScreen = () => {
         sx={{
           display: 'flex',
           alignItems: 'center',
-          textAlign: 'center',
           padding: '20px',
-          width: '50%',
-          height: 'max-content',
           margin: '20px auto',
         }}
       >

@@ -60,23 +60,18 @@ export const CreateUser = () => {
   });
 
   return (
-    <Stack component='form' onSubmit={formik.handleSubmit} width='100vw'>
+    <Stack component='form' onSubmit={formik.handleSubmit}>
       <Paper
         component={Stack}
         sx={{
           display: 'flex',
-          alignItems: 'center',
-          textAlign: 'center',
           padding: '20px',
-          width: '50%',
-          height: 'max-content',
-          margin: '20px auto',
+          textAlign: 'center',
         }}
       >
         <Typography variant='h6' color='success.main'>
           Створити користувача
         </Typography>
-        <Create color='success' />
         <TextField
           placeholder="Им'я"
           value={formik.values.name}

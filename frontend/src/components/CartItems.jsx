@@ -4,6 +4,7 @@ import { Add, Close, Delete, Remove } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addCartItem, countMinus, removeItem } from '../redux/slices/cartSlice';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import currencyFormatter from '../utils/currencyFormatter';
 
 const CartItems = ({ products }) => {
@@ -36,7 +37,7 @@ const CartItems = ({ products }) => {
       }}
     >
       <IconButton onClick={() => removeCartItem(products.id)}>
-        <Delete color='disabled' fontSize='small' />
+        <DeleteOutlinedIcon color='success' fontSize='small' />
       </IconButton>
       <img
         src={products?.image?.url}
@@ -50,13 +51,19 @@ const CartItems = ({ products }) => {
             handleCountMinus({ id: products.id });
           }}
         >
-          <Remove />
+          <Remove
+            sx={{
+              color: 'grey.400',
+            }}
+          />
         </IconButton>
         <Typography
           sx={{
-            padding: '3px 10px 3px 10px',
-            borderRadius: '10px',
-            border: '1px solid black',
+            padding: '3px 20px 3px 20px',
+            borderRadius: '8px',
+            border: '1px solid ',
+
+            borderColor: 'grey.400',
           }}
         >
           {products?.count}
@@ -66,7 +73,7 @@ const CartItems = ({ products }) => {
             dispatch(addCartItem({ id: products.id }));
           }}
         >
-          <Add />
+          <Add color='success' />
         </IconButton>
       </Box>
       <Typography>{currencyFormatter(products?.price)}</Typography>

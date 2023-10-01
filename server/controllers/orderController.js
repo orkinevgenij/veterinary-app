@@ -18,9 +18,11 @@ const createOrderController = asyncHandler(async (req, res) => {
 
 //get user orders
 const getUserOrderController = asyncHandler(async (req, res) => {
-  const order = await orderModel.find({
-    buyer: req?.user?._id,
-  });
+  const order = await orderModel
+    .find({
+      buyer: req?.user?._id,
+    })
+    .populate('buyer');
   if (order) {
     res.status(200).json(order);
   } else {
@@ -33,7 +35,7 @@ const getUserOrderController = asyncHandler(async (req, res) => {
 const getAllUserOrderController = asyncHandler(async (req, res) => {
   const order = await orderModel.find({}).populate('buyer');
   if (order) {
-    res.status(200).json(order);
+    res.status(200).json(order).populate('buyer');
   } else {
     res.status(400);
     throw new Error('Не удалось получить пользовательские заказы');

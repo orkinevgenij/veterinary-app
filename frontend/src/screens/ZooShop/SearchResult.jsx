@@ -39,24 +39,6 @@ export const SearchResult = () => {
           py: 5,
         }}
       >
-        <TextField
-          autoFocus
-          icon
-          placeholder='Я ищу'
-          onChange={(e) => dispatch(setSearch(e.target.value))}
-          value={search}
-          sx={{
-            width: '50%',
-            mb: 3,
-          }}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position='end'>
-                <SearchIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
         <Box>
           {products.length <= 0 ? (
             <ProductsNotFound />

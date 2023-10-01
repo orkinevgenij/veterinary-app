@@ -19,7 +19,6 @@ const formSchema = Yup.object({
 export const UpdateProduct = () => {
   const { pid } = useParams();
   const navigate = useNavigate();
-  console.log('🚀 ~ UpdateProduct ~ id:', pid);
   const { state } = useLocation();
   const { data: category = [] } = useGetAllCategoryQuery();
   const [handleUpdate, { isLoading }] = useUpdateProductMutation();

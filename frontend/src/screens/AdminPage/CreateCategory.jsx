@@ -17,7 +17,7 @@ import {
 } from '@mui/material';
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { CategoryUpdateForm } from '../../components/Form/CategoryUpdateForm';
 import { Loader } from '../../components/Loader';
@@ -28,13 +28,15 @@ import {
   useRemoveCategoryMutation,
   useUpdateCategoryMutation,
 } from '../../redux/slices/categoryApiSlice';
-import { setOpen } from '../../redux/slices/modalSlice';
+import { setOpenModal } from '../../redux/slices/modalSlice';
 const rowNames = ['Название', 'Действие'];
 const formSchema = Yup.object({
   name: Yup.string().required('Введите название категории'),
 });
 
 export const CreateCategory = () => {
+  const { isModalOpen } = useSelector((state) => state.modal);
+  console.log('🚀 ~ CreateCategory ~ open:', open);
   const dispatch = useDispatch();
   const [selectedCategory, setSelectedCategory] = useState('');
   const { data: category = [], isLoading } = useGetAllCategoryQuery();
@@ -65,7 +67,7 @@ export const CreateCategory = () => {
   const handleUpdate = async (name, cid) => {
     try {
       await updateCategory({ name, cid }).unwrap();
-      dispatch(setOpen(false));
+      dispatch(setOpenModal(!isModalOpen));
     } catch (error) {
       console.log('🚀 ~ handleUpdate ~ error:', error);
     }
@@ -73,14 +75,10 @@ export const CreateCategory = () => {
   if (isLoading) return <Loader />;
 
   return (
-    <Grid
-      sx={{
-        mt: 5,
-        ml: 3,
-        mb: 3,
-      }}
-    >
-      <Typography variant='body1'>Создать категорию товара</Typography>
+    <Grid>
+      <Typography variant='body1' color='success.main'>
+        Додати категорію товара
+      </Typography>
       <Box
         onSubmit={formik.handleSubmit}
         component='form'
@@ -105,7 +103,7 @@ export const CreateCategory = () => {
         </Button>
       </Box>
       <TableContainer component={Paper}>
-        <Table aria-label='simple table'>
+        <Table aria-label='simple table' minWidth='200px'>
           <TableHead>
             <TableRow>
               {rowNames.map((name, i) => (
@@ -140,7 +138,7 @@ export const CreateCategory = () => {
                     color='success'
                     title='Редактировать'
                     onClick={() => {
-                      dispatch(setOpen(true));
+                      dispatch(setOpenModal(!isModalOpen));
                       setSelectedCategory(c);
                     }}
                   >

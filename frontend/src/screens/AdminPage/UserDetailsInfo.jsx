@@ -16,9 +16,7 @@ import { useGetUserDetailsQuery } from '../../redux/slices/usersApiSlice';
 import dateFormatter from '../../utils/dateFormatter';
 export const UserDetailsInfo = () => {
   const { userId } = useParams();
-  console.log('🚀 ~ UserDetailsInfo ~ userId:', userId);
   const { data: users = [], isLoading } = useGetUserDetailsQuery(userId);
-  console.log('🚀 ~ UserDetailsInfo ~ users:', users);
   const table = ["Им'я клиента", 'Номер', 'Опис', 'Тварина', 'Бажана дата', 'Статус'];
   if (users.length <= 0)
     return (

@@ -1,6 +1,7 @@
 import { CalendarMonth, Check, Delete, Edit, Email, MoreHoriz, Phone } from '@mui/icons-material';
 import {
   Avatar,
+  Box,
   Button,
   Grid,
   IconButton,
@@ -23,11 +24,12 @@ import {
   useGetUserApointmentQuery,
   useRemoveApointmentMutation,
 } from '../redux/slices/apointmentApiSlice';
+import PersonIcon from '@mui/icons-material/Person';
 import { setPage } from '../redux/slices/paginateSlice';
 import { useGetMeQuery } from '../redux/slices/usersApiSlice';
 import dateFormatter from '../utils/dateFormatter';
 
-const table = ['Имя клиента', 'Номер', 'Описание', 'Животное', 'Желаемая дата', 'Статус'];
+const table = ["Ім'я", 'Номер', 'Опис', 'Тварина', 'Бажана дата', 'Статус'];
 
 export const Profile = () => {
   const { page } = useSelector((state) => state?.paginate);
@@ -56,61 +58,102 @@ export const Profile = () => {
 
   return (
     <>
-      <Stack
+      <Grid
+        component={Paper}
+        spacing={2}
+        container
         sx={{
-          marginBottom: 3,
+          margin: '10px auto 10px',
+          padding: '10px',
         }}
       >
-        <Paper
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={12}
+          gap={2}
+          sx={{
+            display: 'flex',
+          }}
+        >
+          <PersonIcon />
+          <Typography>Особисті дані</Typography>
+        </Grid>
+        <Grid
+          item
+          sm={3}
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
-            width: '50%',
-            margin: 'auto',
-            height: 'max-content',
-            padding: '10px',
           }}
         >
-          <Avatar sx={{ width: 80, height: 80, bgcolor: 'success.light' }}>
-            {profile?.name?.substr(0, 2)}
-          </Avatar>
-          <Typography variant='h6' gutterBottom>
+          <Typography variant='caption' color='GrayText'>
+            Ім'я
+          </Typography>
+          <Typography variant='caption' gutterBottom>
             {profile?.name}
           </Typography>
-          <Stack
-            variant='subtitle1'
+        </Grid>
+
+        <Grid
+          item
+          sm={3}
+          variant='subtitle1'
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <Typography variant='caption' color='GrayText'>
+            Email
+          </Typography>
+          <Typography variant='caption'> {profile?.email}</Typography>
+        </Grid>
+
+        <Grid
+          item
+          sm={3}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <Typography variant='caption' color='GrayText'>
+            Телефон
+          </Typography>
+          <Typography variant='caption'>{profile?.number}</Typography>
+        </Grid>
+
+        <Grid
+          item
+          sm={3}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <Typography variant='caption' color='GrayText'>
+            Дата реєстрації
+          </Typography>
+          <Typography
+            variant='caption'
             sx={{
               display: 'flex',
               flexDirection: 'row',
-              alignItems: 'center',
             }}
           >
-            <Email color='success' />
-            <Typography variant='body2'> {profile?.email}</Typography>
-          </Stack>
-          <Stack
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}
-          >
-            <Phone color='success' />
-            <Typography variant='body2'>{profile?.number}</Typography>
-          </Stack>
-          <Stack
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}
-          >
-            <CalendarMonth color='success' />
-            <Typography variant='body2'>{dateFormatter(profile?.createdAt)}</Typography>
-          </Stack>
+            {dateFormatter(profile?.createdAt)}
+          </Typography>
+        </Grid>
+        <Grid item xs={12} sm={12} md={12}>
           <Button
             color='success'
+            variant='contained'
+            size='small'
+            sx={{
+              flexGrow: 1,
+            }}
             onClick={() =>
               navigate('/profile-update', {
                 state: { profile },
@@ -120,8 +163,9 @@ export const Profile = () => {
           >
             Редагувати
           </Button>
-        </Paper>
-      </Stack>
+        </Grid>
+      </Grid>
+
       <Typography
         variant='h5'
         sx={{

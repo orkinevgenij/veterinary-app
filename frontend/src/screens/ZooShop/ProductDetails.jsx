@@ -65,49 +65,50 @@ export const ProductDetails = () => {
             {currencyFormatter(product.price)}
           </Typography>
         </Grid>
+
         <Grid
           xs={12}
           md={4}
           item
           sx={{
             display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
-          <Stack>
-            <Button
-              variant='contained'
-              color='success'
-              size='large'
-              sx={{
-                mb: 3,
-              }}
-              onClick={() =>
-                addToCart({
-                  title: product.title,
-                  price: product.price,
-                  image: product.image,
-                  id: product._id,
-                })
-              }
-              endIcon={<ShoppingCartIcon fontSize='large' />}
-            >
-              Купить
-            </Button>
-            <Button
-              size='large'
-              variant='contained'
-              color='success'
-              endIcon={<HomeIcon fontSize='large' />}
-              onClick={() =>
-                navigate('/profile-update', {
-                  state: { profile },
-                })
-              }
-            >
-              Обновить данные
-            </Button>
-          </Stack>
+          <Button
+            variant='contained'
+            color='success'
+            size='large'
+            sx={{
+              mb: 3,
+            }}
+            onClick={() =>
+              addToCart({
+                title: product.title,
+                price: product.price,
+                image: product.image,
+                id: product._id,
+              })
+            }
+            endIcon={<ShoppingCartIcon fontSize='large' />}
+          >
+            Купить
+          </Button>
+          <Button
+            size='large'
+            variant='contained'
+            color='success'
+            endIcon={<HomeIcon fontSize='large' />}
+            onClick={() =>
+              navigate('/profile-update', {
+                state: { profile },
+              })
+            }
+          >
+            Обновить данные
+          </Button>
         </Grid>
       </Grid>
       <Divider

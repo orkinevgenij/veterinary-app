@@ -68,8 +68,6 @@ export const ProfileUpdate = () => {
             display: 'flex',
             alignItems: 'center',
             padding: '20px',
-            width: '50%',
-            height: 'max-content',
             margin: '20px auto',
           }}
         >

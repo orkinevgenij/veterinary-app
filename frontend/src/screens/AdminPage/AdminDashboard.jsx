@@ -1,16 +1,33 @@
-import { Box } from '@mui/material';
+import { Box, Grid, Stack, useMediaQuery } from '@mui/material';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import AdminMenu from './AdminMenu';
+import { useTheme } from '@emotion/react';
+import { AdminMobileMenu } from './AdminMobileMenu';
 export const AdminDashbord = () => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('sm'));
   return (
-    <Box
+    <Stack
       sx={{
         display: 'flex',
+        flexDirection: {
+          sm: 'row',
+        },
       }}
     >
-      <AdminMenu />
-      <Outlet />
-    </Box>
+      <Stack>
+        {!matches && <AdminMenu />}
+        {matches && <AdminMobileMenu />}
+      </Stack>
+      <Stack
+        sx={{
+          width: '100%',
+          mt: 5,
+        }}
+      >
+        <Outlet />
+      </Stack>
+    </Stack>
   );
 };

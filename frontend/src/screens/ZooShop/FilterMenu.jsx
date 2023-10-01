@@ -18,7 +18,6 @@ export const FilterMenu = () => {
   const dispatch = useDispatch();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const { checked, priceFrom, priceUp } = useSelector((state) => state.filter);
-  console.log('🚀 ~ FilterMenu ~ checked:', checked);
   const { data: category = [] } = useGetAllCategoryQuery();
 
   let allChecked = [...checked];
@@ -85,24 +84,6 @@ export const FilterMenu = () => {
             p: 3,
           }}
         >
-          {category.map((c, i) => (
-            <FormControlLabel
-              key={c._id}
-              control={
-                <Checkbox ckecked={checked} onChange={(e) => handleFilter(e.target.checked, c)} />
-              }
-              label={c.name}
-            />
-          ))}
-        </Box>
-        <Divider light />
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            p: 3,
-          }}
-        >
           <Box>
             <TextField
               value={priceFrom}
@@ -117,11 +98,26 @@ export const FilterMenu = () => {
               onChange={(e) => dispatch(setPriceUp(e.target.value))}
             />
           </Box>
-          <FormControlLabel control={<Checkbox />} label='0-100 ' />
-          <FormControlLabel control={<Checkbox />} label='100-300 ' />
-          <FormControlLabel control={<Checkbox />} label='300-600 ' />
-          <FormControlLabel control={<Checkbox />} label='600-900 ' />
         </Box>
+
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            p: 3,
+          }}
+        >
+          {category.map((c, i) => (
+            <FormControlLabel
+              key={c._id}
+              control={
+                <Checkbox ckecked={checked} onChange={(e) => handleFilter(e.target.checked, c)} />
+              }
+              label={c.name}
+            />
+          ))}
+        </Box>
+        <Divider light />
       </Drawer>
     </>
   );

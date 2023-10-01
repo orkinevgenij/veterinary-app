@@ -15,7 +15,9 @@ const CategoryPage = () => {
           <Grid key={c?._id} item xs={12} sm={6} md={3}>
             <Card
               onClick={() => {
-                navigate(`/shop/category-product/${c?.slug}`);
+                navigate(`/shop/category-product/${c?.slug}`, {
+                  state: c,
+                });
               }}
               sx={{
                 cursor: 'pointer',
@@ -28,7 +30,15 @@ const CategoryPage = () => {
               }}
               align='center'
             >
-              <CardHeader title={c?.name} />
+              <CardHeader
+                title={c?.name}
+                sx={{
+                  color: 'grey.600',
+                }}
+                titleTypographyProps={{
+                  fontSize: '15px',
+                }}
+              />
             </Card>
           </Grid>
         ))}

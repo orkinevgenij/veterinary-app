@@ -42,7 +42,6 @@ const getProductController = asyncHandler(async (req, res) => {
 const getProductsByCategoryController = asyncHandler(async (req, res) => {
   const { slug } = req?.params;
   const { sortBy } = req?.query;
-  //Вопрос с сортировкой в отдельных категориях sortBy
   const category = await categoryModel.find({ slug });
   const products = await Product.find({ category }).sort({ price: sortBy }).populate('category');
   if (products) {
@@ -55,7 +54,6 @@ const getProductsByCategoryController = asyncHandler(async (req, res) => {
 
 //get product details by slug
 const getProductDetailsController = asyncHandler(async (req, res) => {
-  console.log(req?.params.slug);
   const product = await Product.findOne({ slug: req?.params.slug });
   if (product) {
     res.status(201).json(product);
@@ -64,7 +62,7 @@ const getProductDetailsController = asyncHandler(async (req, res) => {
     throw new Error('Не удалось получить товар');
   }
 });
-//Доделать обновление товара
+//update products
 const updateProductController = asyncHandler(async (req, res) => {
   const { pid } = req?.params;
   const { title, price, description, category, image, _id } = req?.body;
@@ -117,7 +115,6 @@ const productFilterController = asyncHandler(async (req, res) => {
   let args = {};
   if (checked.length > 0) args.category = checked;
   if (priceFrom || priceUp) args.price = { $gte: priceFrom, $lte: priceUp };
-  console.log(args);
   const filteredProducts = await Product.find(args).sort({ price: sortBy }).populate('category');
   if (filteredProducts) {
     res.status(200).json(filteredProducts);

@@ -46,32 +46,6 @@ export const ProductList = () => {
       <Box
         sx={{
           display: 'flex',
-          justifyContent: 'center',
-          width: '100%',
-        }}
-      >
-        <TextField
-          onChange={handleChange}
-          value={search}
-          placeholder='Я ищу'
-          sx={{
-            width: '50%',
-            mb: 3,
-          }}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position='end' onClick={() => navigate('/shop/search-products')}>
-                <IconButton>
-                  <SearchIcon />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
           justifyContent: 'space-between',
         }}
       >

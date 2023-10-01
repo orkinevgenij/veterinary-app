@@ -28,18 +28,8 @@ export const Statistics = () => {
   ];
   if (isLoadingUsers) return <Loader />;
   return (
-    <Box
-      sx={{
-        width: '100%',
-        mt: 5,
-      }}
-    >
-      <TableContainer
-        component={Paper}
-        sx={{
-          mb: 5,
-        }}
-      >
+    <Box>
+      <TableContainer component={Paper}>
         <Table aria-label='simple table'>
           <TableHead>
             <TableRow>

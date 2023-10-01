@@ -1,31 +1,34 @@
-import {
-  AppBar,
-  Badge,
-  Box,
-  ButtonGroup,
-  IconButton,
-  Stack,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Facebook, Instagram, LocationOn, Telegram } from '@mui/icons-material';
+import SearchIcon from '@mui/icons-material/Search';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import { Badge, Box, IconButton, InputAdornment, Stack, TextField, styled } from '@mui/material';
 import React, { useState } from 'react';
-import {
-  Facebook,
-  Instagram,
-  Telegram,
-  LocationOn,
-  ShoppingCart as CartIcon,
-} from '@mui/icons-material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { setSearch } from '../redux/slices/filterSlice';
 import { ShoppingCart } from '../screens/ZooShop/ShoppingCart';
+
 export const SubHeader = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { cartItems } = useSelector((state) => state.cart);
+  const { search } = useSelector((state) => state.filter);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    '& .MuiBadge-badge': {
+      right: 3,
+      top: 17,
+      border: `2px solid ${theme.palette.background.paper}`,
+      padding: '0 4px',
+    },
+  }));
+  const handleChange = (e) => {
+    dispatch(setSearch(e.target.value));
+  };
   return (
     <>
       <ShoppingCart isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
-
       <Stack
         sx={{
           display: 'flex',
@@ -76,7 +79,28 @@ export const SubHeader = () => {
             <Telegram />
           </IconButton>
         </Stack>
-
+        <TextField
+          onChange={handleChange}
+          value={search}
+          placeholder='Я шукаю...'
+          size='small'
+          sx={{
+            width: '60%',
+            backgroundColor: '#fff',
+            borderRadius: '5px',
+            margin: '5px',
+            '.MuiOutlinedInput-notchedOutline': { border: 'none' },
+          }}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position='end' onClick={() => navigate('/shop/search-products')}>
+                <IconButton>
+                  <SearchIcon />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
         <Stack
           sx={{
             display: 'flex',
@@ -84,29 +108,17 @@ export const SubHeader = () => {
             alignItems: 'center',
           }}
         >
-          <IconButton onClick={() => setIsDrawerOpen(true)}>
-            <CartIcon sx={{ color: 'white' }} fontSize='large' />
-          </IconButton>
           <Box>
-            <Typography
-              sx={{
-                color: '#fff',
-              }}
-              variant='subtitle2'
-            >
-              Кошик
-            </Typography>
-            <Typography
-              variant='body2'
-              sx={{
-                backgroundColor: 'warning.main',
-                borderRadius: 1,
-                padding: '3px',
-                color: '#fff',
-              }}
-            >
-              {cartItems?.length} товара
-            </Typography>
+            <IconButton aria-label='cart' onClick={() => setIsDrawerOpen(true)}>
+              <StyledBadge badgeContent={cartItems?.length} color='warning'>
+                <ShoppingCartOutlinedIcon
+                  fontSize='large'
+                  sx={{
+                    color: '#fff',
+                  }}
+                />
+              </StyledBadge>
+            </IconButton>
           </Box>
         </Stack>
       </Stack>

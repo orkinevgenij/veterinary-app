@@ -38,7 +38,7 @@ export const ClientsList = () => {
   }, []);
   if (isLoading) return <Loader />;
   return (
-    <Box sx={{ width: '100%', mt: 5 }}>
+    <Grid>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label='simple table'>
           <TableHead>
@@ -84,6 +84,6 @@ export const ClientsList = () => {
           color='success'
         />
       </Stack>
-    </Box>
+    </Grid>
   );
 };

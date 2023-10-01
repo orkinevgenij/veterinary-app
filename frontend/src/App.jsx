@@ -1,11 +1,12 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import { AdminRoute } from './components/AdminRoute';
 import { Layout } from './components/Layout';
-import { Order } from './components/Order';
 import { PrivateRoute } from './components/PrivateRoute.jsx';
 import { About } from './screens/About';
 import { AdminDashbord } from './screens/AdminPage/AdminDashboard';
+import { AdminOrders } from './screens/AdminPage/AdminOrders';
 import { ApointmentsList } from './screens/AdminPage/ApointmentsList';
 import { ClientsList } from './screens/AdminPage/ClientsList';
 import { CreateCategory } from './screens/AdminPage/CreateCategory';
@@ -14,6 +15,7 @@ import { CreateUser } from './screens/AdminPage/CreateUser';
 import Products from './screens/AdminPage/Products';
 import { Statistics } from './screens/AdminPage/Statistics';
 import { SuccessApointments } from './screens/AdminPage/SuccessApointmentsList';
+import { UpdateProduct } from './screens/AdminPage/UpdateProduct';
 import { UserDetailsInfo } from './screens/AdminPage/UserDetailsInfo';
 import { ApointmentDetails } from './screens/ApointmentDetails';
 import { AppointmentDoctor } from './screens/AppointmentDoctor';
@@ -28,11 +30,9 @@ import { RegisterScreen } from './screens/RegisterScreen.jsx';
 import { Services } from './screens/Services';
 import CategoryPage from './screens/ZooShop/CategoryPage';
 import { CategoryProducts } from './screens/ZooShop/CategoryProduct';
-import { UpdateProduct } from './screens/AdminPage/UpdateProduct';
 import { ProductDetails } from './screens/ZooShop/ProductDetails';
 import { SearchResult } from './screens/ZooShop/SearchResult';
-import { Orders } from './screens/AdminPage/Orders';
-import { AdminRoute } from './components/AdminRoute';
+import { UserOrders } from './screens/ZooShop/UserOrders';
 const App = () => {
   return (
     <>
@@ -46,7 +46,7 @@ const App = () => {
           <Route path='login' element={<LoginScreen />} />
           <Route path='register' element={<RegisterScreen />} />
           <Route path='apointment-details' element={<ApointmentDetails />} />
-          <Route path='order' element={<Order />} />
+          <Route path='user-orders' element={<UserOrders />} />
 
           <Route path='' element={<PrivateRoute />}>
             <Route path='/profile' element={<Profile />} />
@@ -65,7 +65,7 @@ const App = () => {
           <Route path='' element={<AdminRoute />}>
             <Route path='admin' element={<AdminDashbord />}>
               <Route path='clientlist' element={<ClientsList />} />
-              <Route path='orders' element={<Orders />} />
+              <Route path='orders' element={<AdminOrders />} />
               <Route path='user-details/:userId' element={<UserDetailsInfo />} />
               <Route path='apointments' element={<ApointmentsList />} />
               <Route path='statistics' element={<Statistics />} />

@@ -48,7 +48,6 @@ const updateCategoryController = asyncHandler(async (req, res) => {
 //remove category
 const removeCategoryController = asyncHandler(async (req, res) => {
   const { cid } = req?.params;
-  console.log('🚀 ~ removeCategoryController ~ id:', cid);
   const category = await categoryModel.findByIdAndDelete({ _id: cid });
   if (category) {
     res.status(200).json(category);

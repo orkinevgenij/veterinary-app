@@ -3,7 +3,6 @@ import React from 'react';
 import { ProductCard } from './ProductCard';
 
 const ProductRelated = ({ products }) => {
-  console.log('🚀 ~ ProductRelated ~ products:', products);
   return (
     <div>
       <Typography variant='h5'>Також вас можуть зацікавити</Typography>

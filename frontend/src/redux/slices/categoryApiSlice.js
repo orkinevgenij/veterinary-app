@@ -5,13 +5,13 @@ const CATEGORY_URL = 'https://veterinary-app.onrender.com/api/category';
 export const categoryApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllCategory: builder.query({
-      query: () => `${CATEGORY_URL}/get-category`,
+      query: () => `/${CATEGORY_URL}/get-category`,
       providesTags: ['Category'],
     }),
 
     createCategory: builder.mutation({
       query: (data) => ({
-        url: `${CATEGORY_URL}/create-category`,
+        url: `/${CATEGORY_URL}/create-category`,
         method: 'POST',
         body: data,
       }),
@@ -19,7 +19,7 @@ export const categoryApiSlice = apiSlice.injectEndpoints({
     }),
     updateCategory: builder.mutation({
       query: ({ name, cid }) => ({
-        url: `${CATEGORY_URL}/update-category/${cid}`,
+        url: `/${CATEGORY_URL}/update-category/${cid}`,
         method: 'PUT',
         body: { name },
       }),
@@ -27,7 +27,7 @@ export const categoryApiSlice = apiSlice.injectEndpoints({
     }),
     removeCategory: builder.mutation({
       query: (cid) => ({
-        url: `${CATEGORY_URL}/remove-category/${cid}`,
+        url: `/${CATEGORY_URL}/remove-category/${cid}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Category'],

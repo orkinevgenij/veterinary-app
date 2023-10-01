@@ -63,7 +63,6 @@ const registerUser = asyncHandler(async (req, res) => {
 
 const getAllUsers = asyncHandler(async (req, res) => {
   const { page } = req?.query;
-  console.log(page);
   const users = await User.paginate(
     {},
     {
@@ -159,7 +158,6 @@ const createUser = asyncHandler(async (req, res) => {
   }
 });
 const getUserDetails = asyncHandler(async (req, res) => {
-  console.log(req?.params?.userId);
   const apointments = await Apointment.find({
     user: req?.params?.userId,
   }).populate('user');

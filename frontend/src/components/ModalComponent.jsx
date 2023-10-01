@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setOpen } from '../redux/slices/modalSlice';
+import { setOpenModal } from '../redux/slices/modalSlice';
 
 const style = {
   position: 'absolute',
@@ -18,14 +18,13 @@ const style = {
 };
 
 export const ModalComponent = ({ children }) => {
-  const { open } = useSelector((state) => state.modal);
+  const { isModalOpen } = useSelector((state) => state.modal);
   const dispatch = useDispatch();
-  const handleOpen = () => dispatch(setOpen(true));
-  const handleClose = () => dispatch(setOpen(false));
+  const handleClose = () => dispatch(setOpenModal(false));
 
   return (
     <div>
-      <Modal open={open} onClose={handleClose}>
+      <Modal open={isModalOpen} onClose={handleClose}>
         <Box sx={style}>{children}</Box>
       </Modal>
     </div>

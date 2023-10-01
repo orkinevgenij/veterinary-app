@@ -7,9 +7,9 @@ const theme = createTheme({
       light: '#e63c69',
     },
     success: {
+      light: '#e9eaf0',
       main: '#4c66b4',
-      dark: '#6a7db6',
-      light: '#7886b0',
+      dark: '#6a86db',
       contrastText: '#fff',
     },
   },
@@ -29,6 +29,14 @@ const theme = createTheme({
       },
     },
   },
+  // breakpoints: {
+  //   values: {
+  //     mobile: 0,
+  //     tablet: 768,
+  //     tablet: 1024,
+  //     desktop: 1200,
+  //   },
+  // },
 });
 
 export default theme;

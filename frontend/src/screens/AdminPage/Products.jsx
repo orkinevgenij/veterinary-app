@@ -35,65 +35,59 @@ const Products = () => {
     }
   };
   return (
-    <Box
-      sx={{
-        marginTop: 5,
-      }}
-    >
-      <TableContainer component={Paper}>
-        <Table aria-label='simple table'>
-          <TableHead>
-            <TableRow>
-              {rowNames.map((name, i) => (
-                <TableCell
-                  key={i}
-                  sx={{
-                    fontWeight: 'bold',
-                    textAlign: 'center',
-                    color: 'success.main',
-                  }}
-                >
-                  {name}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {products.map((p) => (
-              <TableRow
-                key={p?._id}
+    <TableContainer component={Paper}>
+      <Table aria-label='simple table'>
+        <TableHead>
+          <TableRow>
+            {rowNames.map((name, i) => (
+              <TableCell
+                key={i}
                 sx={{
-                  cursor: 'pointer',
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                  color: 'success.main',
                 }}
-                hover
               >
-                <TableCell align='center'>{p?._id}</TableCell>
-                <TableCell align='center'>{p?.title}</TableCell>
-                <TableCell align='center'>{p?.price} грн.</TableCell>
-                <TableCell align='center'>{p?.category?.name}</TableCell>
-                <TableCell align='center'>
-                  <IconButton color='success' title='Удалить' onClick={() => handleRemove(p?._id)}>
-                    <DeleteIcon />
-                  </IconButton>
-                  <IconButton
-                    color='success'
-                    title='Редактировать'
-                    x
-                    onClick={() =>
-                      navigate(`update-product/${p?._id}`, {
-                        state: { p },
-                      })
-                    }
-                  >
-                    <EditIcon />
-                  </IconButton>
-                </TableCell>
-              </TableRow>
+                {name}
+              </TableCell>
             ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Box>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {products.map((p) => (
+            <TableRow
+              key={p?._id}
+              sx={{
+                cursor: 'pointer',
+              }}
+              hover
+            >
+              <TableCell align='center'>{p?._id}</TableCell>
+              <TableCell align='center'>{p?.title}</TableCell>
+              <TableCell align='center'>{p?.price} грн.</TableCell>
+              <TableCell align='center'>{p?.category?.name}</TableCell>
+              <TableCell align='center'>
+                <IconButton color='success' title='Удалить' onClick={() => handleRemove(p?._id)}>
+                  <DeleteIcon />
+                </IconButton>
+                <IconButton
+                  color='success'
+                  title='Редактировать'
+                  x
+                  onClick={() =>
+                    navigate(`update-product/${p?._id}`, {
+                      state: { p },
+                    })
+                  }
+                >
+                  <EditIcon />
+                </IconButton>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 

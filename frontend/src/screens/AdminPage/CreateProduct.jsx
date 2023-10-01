@@ -32,7 +32,6 @@ export const CreateProduct = () => {
       image: '',
     },
     onSubmit: async (values, { resetForm }) => {
-      console.log({ ...values, image: preview });
       await createProduct({ ...values, image: preview }).unwrap();
       navigate('/admin/all-products');
     },
@@ -53,17 +52,13 @@ export const CreateProduct = () => {
   };
 
   return (
-    <Stack component='form' onSubmit={formik.handleSubmit} width='100vw'>
+    <Stack component='form' onSubmit={formik.handleSubmit}>
       <Paper
         component={Stack}
         sx={{
           display: 'flex',
-          alignItems: 'center',
-          textAlign: 'center',
           padding: '20px',
-          width: '50%',
-          height: 'max-content',
-          margin: '20px auto',
+          textAlign: 'center',
         }}
       >
         <Typography variant='h6' color='success.main'>

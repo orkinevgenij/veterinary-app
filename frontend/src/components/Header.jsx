@@ -2,6 +2,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import MenuIcon from '@mui/icons-material/Menu';
 import {
   AppBar,
+  Avatar,
   Box,
   Button,
   Container,
@@ -17,8 +18,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../assets/img/logo.png';
-import { checkAuth, logout } from '../redux/slices/authSlice';
-import { useGetMeQuery } from '../redux/slices/usersApiSlice';
+import { logout } from '../redux/slices/authSlice';
 const objNav = [
   { nav: '/', title: 'Головна' },
   { nav: '/doctors', title: 'Лікарі' },
@@ -156,21 +156,22 @@ export const Header = () => {
               <img src={Logo} alt='' height={40} width={40} />
               ZOO
             </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', alignItems: 'center' } }}>
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: 'none', md: 'flex', alignItems: 'center' },
+              }}
+            >
               {objNav.map((obj, index) => (
                 <>
                   <Divider orientation='vertical' flexItem />
                   <Button
                     disableRipple
-                    size='large'
-                    key={index}
                     component={Link}
                     to={obj.nav}
                     onClick={handleCloseNavMenu}
                     sx={{
-                      my: 2,
                       color: 'white',
-                      display: 'block',
                       '&:last-child': {
                         backgroundColor: 'warning.main',
                         ml: 3,
@@ -230,12 +231,11 @@ export const Header = () => {
                 >
                   <Typography>Профіль</Typography>
                 </MenuItem>
-
                 {userInfo?.isAdmin && (
                   <MenuItem
                     onClick={handleCloseUserMenu}
                     component={Link}
-                    to='/admin/clientlist'
+                    to='admin/clientlist'
                     sx={{
                       textDecoration: 'none',
                       color: '#000',
@@ -244,6 +244,20 @@ export const Header = () => {
                     <Typography>Управління</Typography>
                   </MenuItem>
                 )}
+                {!userInfo?.isAdmin && (
+                  <MenuItem
+                    onClick={() => handleCloseUserMenu()}
+                    component={Link}
+                    to='user-orders'
+                    sx={{
+                      textDecoration: 'none',
+                      color: '#000',
+                    }}
+                  >
+                    <Typography>Мои заказы</Typography>
+                  </MenuItem>
+                )}
+
                 <MenuItem
                   onClick={logoutHandler}
                   sx={{

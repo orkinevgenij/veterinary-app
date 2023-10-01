@@ -1,14 +1,21 @@
-import { Button, Card, CardContent, CardHeader, CardMedia, Typography } from '@mui/material';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  IconButton,
+  Stack,
+  Typography,
+} from '@mui/material';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { useDispatch, useSelector } from 'react-redux';
 import { addCartItem } from '../../redux/slices/cartSlice';
 import currencyFormatter from '../../utils/currencyFormatter';
 export const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { cartItems } = useSelector((state) => state.cart);
 
   const addToCart = (title, price, image, id) => {
     dispatch(addCartItem(title, price, image, id));
@@ -43,25 +50,30 @@ export const ProductCard = ({ product }) => {
           {product?.description.substring(0, 30)}
         </Typography>
       </CardContent>
-      <Typography pr='10px'>{currencyFormatter(product?.price)} </Typography>
-      <Button
-        variant='contained'
-        color='success'
-        endIcon={<ShoppingCartIcon />}
-        onClick={() =>
-          addToCart({
-            title: product.title,
-            price: product.price,
-            image: product.image,
-            id: product._id,
-          })
-        }
+      <Stack
         sx={{
-          width: '50%',
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          width: '100%',
         }}
       >
-        Купить
-      </Button>
+        <Typography>{currencyFormatter(product?.price)}</Typography>
+        <IconButton
+          color='success'
+          onClick={() =>
+            addToCart({
+              title: product.title,
+              price: product.price,
+              image: product.image,
+              id: product._id,
+            })
+          }
+        >
+          <ShoppingCartOutlinedIcon fontSize='medium' />
+        </IconButton>
+      </Stack>
     </Card>
   );
 };

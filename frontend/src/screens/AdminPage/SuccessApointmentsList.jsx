@@ -38,13 +38,7 @@ export const SuccessApointments = () => {
         width: '100%',
       }}
     >
-      {' '}
-      <TableContainer
-        component={Paper}
-        sx={{
-          marginTop: 3,
-        }}
-      >
+      <TableContainer component={Paper}>
         <Table stickyHeader aria-label='simple table'>
           <TableHead>
             <TableRow>

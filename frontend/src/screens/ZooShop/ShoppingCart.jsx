@@ -16,9 +16,8 @@ export const ShoppingCart = ({ isDrawerOpen, setIsDrawerOpen }) => {
 
   const handleCreateOrder = async () => {
     await createOrder({ cartItems });
-    dispatch(clearCart());
     setIsDrawerOpen(false);
-    navigate(userInfo ? 'order' : 'login');
+    navigate(userInfo ? 'user-orders' : 'login');
   };
 
   return (
@@ -41,6 +40,8 @@ export const ShoppingCart = ({ isDrawerOpen, setIsDrawerOpen }) => {
             </IconButton>
           </Box>
         </Box>
+        <Divider />
+
         <Box p={2} maxWidth='400px' role='presentation'>
           {cartItems.length <= 0 ? (
             <CartEmpty />
@@ -56,25 +57,7 @@ export const ShoppingCart = ({ isDrawerOpen, setIsDrawerOpen }) => {
               </>
             ))
           )}
-          {totalPrice > 0 && (
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Typography variant='h5' color='gray'>
-                Всього:
-              </Typography>
-              <Typography
-                sx={{
-                  fontWeight: '900',
-                }}
-              >
-                {currencyFormatter(totalPrice)}
-              </Typography>
-            </Box>
-          )}
+
           {cartItems.length <= 0 ? (
             <Box
               sx={{
@@ -97,12 +80,38 @@ export const ShoppingCart = ({ isDrawerOpen, setIsDrawerOpen }) => {
             <Box
               sx={{
                 display: 'flex',
-                justifyContent: 'center',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                border: '1px solid',
+                borderColor: 'success.main',
+                padding: 2,
+                borderRadius: '5px',
+                backgroundColor: 'success.light',
               }}
             >
-              <Button variant='contained' color='success' onClick={handleCreateOrder}>
-                Оформить заказ
-              </Button>
+              {totalPrice > 0 && (
+                <>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      mb: 3,
+                    }}
+                  >
+                    <Typography variant='h5'>Разом</Typography>
+                    <Typography
+                      sx={{
+                        fontWeight: '600',
+                      }}
+                    >
+                      {currencyFormatter(totalPrice)}
+                    </Typography>
+                  </Box>
+                  <Button variant='contained' color='success' onClick={handleCreateOrder}>
+                    Оформить заказ
+                  </Button>
+                </>
+              )}
             </Box>
           )}
         </Box>
