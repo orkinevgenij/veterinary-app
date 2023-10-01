@@ -5,7 +5,7 @@ const APOINTMENS_URL = 'https://veterinary-app.onrender.com/api/apointments';
 export const apointmentApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllApointments: builder.query({
-      query: (page) => `/${APOINTMENS_URL}?page=${page}`,
+      query: (page) => `${APOINTMENS_URL}?page=${page}`,
       providesTags: ['Apointment'],
     }),
 
@@ -15,7 +15,7 @@ export const apointmentApiSlice = apiSlice.injectEndpoints({
     }),
     createApointment: builder.mutation({
       query: (data) => ({
-        url: `/${APOINTMENS_URL}/apointment`,
+        url: `${APOINTMENS_URL}/apointment`,
         method: 'POST',
         body: data,
       }),
@@ -23,7 +23,7 @@ export const apointmentApiSlice = apiSlice.injectEndpoints({
     }),
     updateApointment: builder.mutation({
       query: (data) => ({
-        url: `/${APOINTMENS_URL}/update`,
+        url: `${APOINTMENS_URL}/update`,
         method: 'PUT',
         body: data,
       }),
@@ -31,7 +31,7 @@ export const apointmentApiSlice = apiSlice.injectEndpoints({
     }),
     removeApointment: builder.mutation({
       query: (data) => ({
-        url: `/${APOINTMENS_URL}/remove`,
+        url: `${APOINTMENS_URL}/remove`,
         method: 'DELETE',
         body: data,
       }),
