@@ -1,5 +1,6 @@
 import { Create } from '@mui/icons-material';
 import {
+  Box,
   Button,
   FormControlLabel,
   Paper,
@@ -149,22 +150,11 @@ export const CreateUser = () => {
           {formik.touched.userStatus && formik.errors.userStatus}
         </Typography>
         {isLoading && <Loader />}
-        <Stack
-          sx={{
-            display: 'flex',
-          }}
-        >
-          <Button
-            type='submit'
-            variant='contained'
-            color='success'
-            sx={{
-              display: 'block',
-            }}
-          >
+        <Box>
+          <Button type='submit' variant='contained' color='success'>
             Створити
           </Button>
-        </Stack>
+        </Box>
       </Paper>
     </Stack>
   );

@@ -1,4 +1,4 @@
-import { Button, MenuItem, Paper, Stack, TextField, Typography } from '@mui/material';
+import { Box, Button, MenuItem, Paper, Stack, TextField, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import 'react-phone-input-2/lib/style.css';
@@ -13,7 +13,6 @@ const formSchema = Yup.object({
   description: Yup.string().required('Додайте информацію о товарі'),
   price: Yup.string().required('Введіть ціну товару'),
   category: Yup.string().required('Виберіть категорію'),
-  // image: Yup.mixed().required('Виберіть зображення'),
 });
 
 export const CreateProduct = () => {
@@ -117,22 +116,11 @@ export const CreateProduct = () => {
             </MenuItem>
           ))}
         </TextField>
-        <Stack
-          sx={{
-            display: 'flex',
-          }}
-        >
-          <Button
-            type='submit'
-            variant='contained'
-            color='success'
-            sx={{
-              display: 'block',
-            }}
-          >
+        <Box>
+          <Button type='submit' variant='contained' color='success'>
             Додати
           </Button>
-        </Stack>
+        </Box>
       </Paper>
     </Stack>
   );
