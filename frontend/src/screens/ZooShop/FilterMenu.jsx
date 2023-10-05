@@ -110,9 +110,8 @@ export const FilterMenu = () => {
           {category.map((c, i) => (
             <FormControlLabel
               key={c._id}
-              control={
-                <Checkbox ckecked={checked} onChange={(e) => handleFilter(e.target.checked, c)} />
-              }
+              checked={checked.includes(c)}
+              control={<Checkbox onChange={(e) => handleFilter(e.target.checked, c)} />}
               label={c.name}
             />
           ))}

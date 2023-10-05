@@ -1,11 +1,12 @@
 import { Close } from '@mui/icons-material';
-import { Box, Button, Divider, Drawer, IconButton, Typography } from '@mui/material';
+import { Box, Button, Divider, Drawer, IconButton, Stack, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { CartEmpty } from '../../components/CartEmpty';
 import CartItems from '../../components/CartItems';
 import { clearCart } from '../../redux/slices/cartSlice';
 import { useCreateOrderMutation } from '../../redux/slices/orderApiSlice';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import currencyFormatter from '../../utils/currencyFormatter';
 export const ShoppingCart = ({ isDrawerOpen, setIsDrawerOpen }) => {
   const { userInfo } = useSelector((state) => state?.auth);
@@ -23,6 +24,29 @@ export const ShoppingCart = ({ isDrawerOpen, setIsDrawerOpen }) => {
   return (
     <>
       <Drawer anchor='right' open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
+        {cartItems.length > 0 && (
+          <Stack
+            sx={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Button
+              onClick={() => {
+                if (window.confirm('Вы действительно хотите удалить?')) dispatch(clearCart());
+              }}
+              endIcon={<DeleteOutlineIcon />}
+              size='small'
+              sx={{
+                color: 'grey.500',
+                mt: 1,
+              }}
+            >
+              Очистити кошик
+            </Button>
+          </Stack>
+        )}
         <Box
           sx={{
             display: 'flex',
@@ -31,7 +55,7 @@ export const ShoppingCart = ({ isDrawerOpen, setIsDrawerOpen }) => {
             p: 1,
           }}
         >
-          <Typography sx={{ flexGrow: 1 }} variant='body2'>
+          <Typography sx={{ flexGrow: 1 }} variant='caption' color='grey.600'>
             {cartItems.length > 0 && `Товарів в кошику: ${cartItems.length}`}
           </Typography>
           <Box>
