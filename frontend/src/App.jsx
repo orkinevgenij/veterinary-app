@@ -33,6 +33,7 @@ import { CategoryProducts } from './screens/ZooShop/CategoryProduct';
 import { ProductDetails } from './screens/ZooShop/ProductDetails';
 import { SearchResult } from './screens/ZooShop/SearchResult';
 import { UserOrders } from './screens/ZooShop/UserOrders';
+import { ZooShop } from './screens/ZooShop/ZooShop';
 const App = () => {
   return (
     <>
@@ -55,11 +56,13 @@ const App = () => {
           </Route>
 
           {/*Shop routes  */}
-          <Route path='shop/product/:slug' element={<Products />} />
-          <Route path='shop/category' element={<CategoryPage />} />
-          <Route path='shop/category-product/:slug' element={<CategoryProducts />} />
-          <Route path='shop/product-details/:slug' element={<ProductDetails />} />
-          <Route path='shop/search-products' element={<SearchResult />} />
+          <Route path='shop' element={<ZooShop />}>
+            <Route path='product/:slug' element={<Products />} />
+            <Route path='category' element={<CategoryPage />} />
+            <Route path='category-product/:slug' element={<CategoryProducts />} />
+            <Route path='product-details/:slug' element={<ProductDetails />} />
+            <Route path='search-products' element={<SearchResult />} />
+          </Route>
 
           {/* Admin routes */}
           <Route path='' element={<AdminRoute />}>
