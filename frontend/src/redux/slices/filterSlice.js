@@ -16,6 +16,9 @@ const filterSlice = createSlice({
     setChecked: (state, action) => {
       state.checked = action.payload;
     },
+    removeChecked: (state, action) => {
+      state.checked = state.checked.filter((c) => c._id !== action.payload);
+    },
     setPriceFrom: (state, action) => {
       state.priceFrom = action.payload;
     },
@@ -31,5 +34,6 @@ const filterSlice = createSlice({
   },
 });
 
-export const { setChecked, setPriceFrom, setPriceUp, setSort, setSearch } = filterSlice.actions;
+export const { setChecked, setPriceFrom, setPriceUp, setSort, setSearch, removeChecked } =
+  filterSlice.actions;
 export default filterSlice.reducer;
