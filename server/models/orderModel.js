@@ -20,6 +20,11 @@ const orderSchema = new Schema(
           type: Object,
           required: true,
         },
+        slug: {
+          type: String,
+          required: true,
+          lowercase: true,
+        },
       },
     ],
     buyer: {

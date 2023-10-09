@@ -3,9 +3,8 @@ import generateToken from '../utils/generateToken.js';
 import User from '../models/userModel.js';
 import Apointment from '../models/doctorApointment.js';
 
-//Auth user/set token
-//route POST /api/users/auth
-//access Public
+//Auth user
+
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
@@ -25,8 +24,6 @@ const authUser = asyncHandler(async (req, res) => {
 });
 
 //Register a new user
-//route POST /api/users
-//access Public
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, number, password } = req.body;
 
@@ -58,9 +55,6 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 //Get all user
-//route GET /api/users
-//access private Public
-
 const getAllUsers = asyncHandler(async (req, res) => {
   const { page } = req?.query;
   const users = await User.paginate(
@@ -77,9 +71,6 @@ const getAllUsers = asyncHandler(async (req, res) => {
 });
 
 //Get user profile
-//route GET /api/users/profile
-//access Private
-
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req?.user?._id).populate({
     path: 'apointment',
@@ -94,9 +85,6 @@ const getUserProfile = asyncHandler(async (req, res) => {
 });
 
 //Update user profile
-//route PUT /api/users/profile
-//@access Private
-
 const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findByIdAndUpdate(req?.user?._id);
   if (user) {
@@ -123,8 +111,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 });
 
 //Update user profile
-//route PUT /api/users/createuser
-//access Private
+
 const createUser = asyncHandler(async (req, res) => {
   const { name, email, number, password, userStatus } = req.body;
 
@@ -157,6 +144,8 @@ const createUser = asyncHandler(async (req, res) => {
     throw new Error('Invalid user data');
   }
 });
+
+//user apointments
 const getUserDetails = asyncHandler(async (req, res) => {
   const apointments = await Apointment.find({
     user: req?.params?.userId,

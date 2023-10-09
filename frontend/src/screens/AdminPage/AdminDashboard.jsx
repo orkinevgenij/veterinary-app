@@ -10,7 +10,6 @@ export const AdminDashbord = () => {
   return (
     <Stack
       sx={{
-        display: 'flex',
         flexDirection: {
           sm: 'row',
         },

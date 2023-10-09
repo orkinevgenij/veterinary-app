@@ -31,7 +31,6 @@ export const SubHeader = () => {
       <ShoppingCart isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
       <Stack
         sx={{
-          display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
           padding: '0 10px 0 10px',
@@ -40,7 +39,6 @@ export const SubHeader = () => {
       >
         <Stack
           sx={{
-            display: 'flex',
             flexDirection: 'row',
           }}
         >
@@ -103,7 +101,6 @@ export const SubHeader = () => {
         />
         <Stack
           sx={{
-            display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
           }}

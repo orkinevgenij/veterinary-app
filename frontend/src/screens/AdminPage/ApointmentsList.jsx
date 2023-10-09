@@ -95,7 +95,7 @@ export const ApointmentsList = () => {
                         Завершен
                       </Typography>
                     ) : (
-                      <Stack sx={{ display: 'flex', flexDirection: 'row' }}>
+                      <Stack sx={{ flexDirection: 'row' }}>
                         <IconButton
                           title='Видалити'
                           onClick={() => handleRemoveApointment(apointment?._id)}

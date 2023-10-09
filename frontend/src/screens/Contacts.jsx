@@ -1,6 +1,6 @@
-import { Divider, Grid, Paper, Stack, Typography } from '@mui/material';
+import { AccessAlarm, LocationOn, Phone } from '@mui/icons-material';
+import { Divider, Grid, Paper, Typography } from '@mui/material';
 import React from 'react';
-import { LocationOn, AccessAlarm, Phone } from '@mui/icons-material';
 export const Contacts = () => {
   return (
     <>

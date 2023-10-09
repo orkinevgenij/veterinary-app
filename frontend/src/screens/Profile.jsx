@@ -1,7 +1,6 @@
-import { CalendarMonth, Check, Delete, Edit, Email, MoreHoriz, Phone } from '@mui/icons-material';
+import { Check, Delete, Edit, MoreHoriz } from '@mui/icons-material';
+import PersonIcon from '@mui/icons-material/Person';
 import {
-  Avatar,
-  Box,
   Button,
   Grid,
   IconButton,
@@ -13,7 +12,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Typography,
+  Typography
 } from '@mui/material';
 import Pagination from '@mui/material/Pagination';
 import React from 'react';
@@ -24,7 +23,6 @@ import {
   useGetUserApointmentQuery,
   useRemoveApointmentMutation,
 } from '../redux/slices/apointmentApiSlice';
-import PersonIcon from '@mui/icons-material/Person';
 import { setPage } from '../redux/slices/paginateSlice';
 import { useGetMeQuery } from '../redux/slices/usersApiSlice';
 import dateFormatter from '../utils/dateFormatter';
@@ -176,7 +174,7 @@ export const Profile = () => {
       </Typography>
 
       {isFetching ? (
-        <Stack sx={{ display: 'flex', alignItems: 'center' }}>
+        <Stack sx={{ alignItems: 'center' }}>
           <Loader />
         </Stack>
       ) : (
@@ -224,7 +222,6 @@ export const Profile = () => {
                           {apointment?.status ? (
                             <Stack
                               sx={{
-                                display: 'flex',
                                 flexDirection: 'row',
                                 alignItems: 'center',
                               }}
@@ -242,7 +239,6 @@ export const Profile = () => {
                           ) : (
                             <Stack
                               sx={{
-                                display: 'flex',
                                 flexDirection: 'row',
                                 alignItems: 'center',
                               }}

@@ -14,7 +14,6 @@ const formSchema = Yup.object({
   description: Yup.string().required('Додайте информацію о товарі'),
   price: Yup.string().required('Введіть ціну товару'),
   category: Yup.string().required('Виберіть категорію'),
-  // image: Yup.mixed().required('Виберіть зображення'),
 });
 export const UpdateProduct = () => {
   const { pid } = useParams();
@@ -72,7 +71,6 @@ export const UpdateProduct = () => {
   return (
     <Stack
       sx={{
-        display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         justifyContent: 'center',
@@ -161,11 +159,7 @@ export const UpdateProduct = () => {
             </MenuItem>
           ))}
         </TextField>
-        <Stack
-          sx={{
-            display: 'flex',
-          }}
-        >
+        <Stack>
           <Button
             type='submit'
             variant='contained'

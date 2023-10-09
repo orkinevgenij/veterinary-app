@@ -1,12 +1,13 @@
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-import { Box, Grid, Typography, Divider } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import currencyFormatter from '../utils/currencyFormatter';
 export const OrderList = ({ orders }) => {
   const [isOpen, setIsOpen] = useState();
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const totalPrice = () => {
     let total = 0;
     orders?.products.map((item) => {
@@ -96,24 +97,28 @@ export const OrderList = ({ orders }) => {
           >
             {orders.products.map((o) => (
               <>
-                <Grid
-                  item
-                  sm={4}
-                  md={4}
-                  xs={12}
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                  }}
-                >
+                <Grid item sm={4} md={4} xs={12}>
                   <Box
                     sx={{
                       display: 'flex',
+                      alignItems: 'center',
                       gap: 1,
                     }}
                   >
                     <img src={o.image.url} alt='' width='20px' height='20px' />
-                    <Typography variant='caption'>{o.title}</Typography>
+                    <Typography
+                      variant='caption'
+                      onClick={() => navigate(`/shop/product-details/${o?.slug}`)}
+                      color='success.main'
+                      sx={{
+                        '&:hover': {
+                          cursor: 'pointer',
+                          textDecoration: 'underline',
+                        },
+                      }}
+                    >
+                      {o.title}
+                    </Typography>
                   </Box>
                 </Grid>
                 <Grid item sm={4} md={4} xs={4}>

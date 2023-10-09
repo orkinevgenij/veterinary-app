@@ -81,7 +81,6 @@ export const AppointmentDoctor = () => {
       <Paper
         component={Stack}
         sx={{
-          display: 'flex',
           alignItems: 'center',
           textAlign: 'center',
           padding: '20px',
@@ -165,11 +164,7 @@ export const AppointmentDoctor = () => {
           {formik.touched.description && formik.errors.description}
         </Typography>
         {isLoading && <Loader />}
-        <Stack
-          sx={{
-            display: 'flex',
-          }}
-        >
+        <Stack>
           <Button
             type='submit'
             variant='contained'

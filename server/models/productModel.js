@@ -32,20 +32,7 @@ const productSchema = mongoose.Schema(
   {
     timestamps: true,
   },
-  // {
-  //   toObject: {
-  //     virtuals: true,
-  //   },
-  //   toJSON: { virtuals: true },
-  //   timestamps: true,
-  // },
 );
-
-// userSchema.virtual('apointment', {
-//   ref: 'Apointment',
-//   foreignField: 'user',
-//   localField: '_id',
-// });
 
 const Product = mongoose.model('Product', productSchema);
 

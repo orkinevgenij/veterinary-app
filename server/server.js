@@ -10,6 +10,7 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import cookieParser from 'cookie-parser';
 import connectDB from './config/db.js';
 import cors from 'cors';
+import nodemailer from 'nodemailer';
 const port = process.env.PORT || 5001;
 
 connectDB();
@@ -20,6 +21,40 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors());
 
+// const transporter = nodemailer.createTransport({
+//   port: 587,
+//   host: 'smtp.gmail.com',
+//   secure: false,
+//   auth: {
+//     user: 'orkinevgenij@gmail.com',
+//     pass: 'aizawgguforyufhn',
+//   },
+// });
+
+// app.post('/text-mail', (req, res) => {
+//   const { name, animal, description, number, date } = req.body;
+//   const mailData = {
+//     from: `${name} orkinevgenij@gmail.com`,
+//     to: 'orkinevgenij@gmail.com',
+//     subject: 'Ветеринарная клиника',
+//     text: 'Hello world',
+//     html: `<p>Имя клиента: ${name}</p>
+//     <br/>
+//     <p>Телефон: ${number}</p>
+//     <br/>
+//     <p>Животное: ${animal}</p>
+//     <br/>
+//     <p>Описание: ${description}</p>
+//     <br/>
+//     <p>Желаемая дата визита: ${date}</p>`,
+//   };
+//   transporter.sendMail(mailData, (error, info) => {
+//     if (error) {
+//       return console.log(error);
+//     }
+//     res.status(200).send({ message: 'Mail send', message_id: info.messageId });
+//   });
+// });
 app.get('/', (req, res) => {
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.send('Api is running');

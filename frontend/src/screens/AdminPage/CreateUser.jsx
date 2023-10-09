@@ -1,6 +1,4 @@
-import { Create } from '@mui/icons-material';
 import {
-  Box,
   Button,
   FormControlLabel,
   Paper,
@@ -12,15 +10,14 @@ import {
 } from '@mui/material';
 import { useFormik } from 'formik';
 import React from 'react';
+import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import { Loader } from '../../components/Loader';
-import { setCredentials } from '../../redux/slices/authSlice';
 import { useCreateUserMutation } from '../../redux/slices/usersApiSlice';
-import PhoneInput from 'react-phone-input-2';
 const formSchema = Yup.object({
   name: Yup.string().required("Введіть ім'я користувача"),
   email: Yup.string().required('Введите E-mail користувача'),
@@ -65,7 +62,6 @@ export const CreateUser = () => {
       <Paper
         component={Stack}
         sx={{
-          display: 'flex',
           padding: '20px',
           textAlign: 'center',
         }}
@@ -150,11 +146,18 @@ export const CreateUser = () => {
           {formik.touched.userStatus && formik.errors.userStatus}
         </Typography>
         {isLoading && <Loader />}
-        <Box>
-          <Button type='submit' variant='contained' color='success'>
+        <Stack>
+          <Button
+            type='submit'
+            variant='contained'
+            color='success'
+            sx={{
+              display: 'block',
+            }}
+          >
             Створити
           </Button>
-        </Box>
+        </Stack>
       </Paper>
     </Stack>
   );

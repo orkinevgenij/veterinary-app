@@ -7,13 +7,21 @@ import {
   Divider,
   Drawer,
   FormControlLabel,
+  IconButton,
+  Stack,
   TextField,
   Typography,
 } from '@mui/material';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetAllCategoryQuery } from '../../redux/slices/categoryApiSlice';
-import { setChecked, setPriceFrom, setPriceUp } from '../../redux/slices/filterSlice';
+import {
+  removeChecked,
+  setChecked,
+  setPriceFrom,
+  setPriceUp,
+} from '../../redux/slices/filterSlice';
+import CloseIcon from '@mui/icons-material/Close';
 export const FilterMenu = () => {
   const dispatch = useDispatch();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -30,7 +38,6 @@ export const FilterMenu = () => {
     }
     dispatch(setChecked(allChecked));
   };
-
   return (
     <>
       <Button
@@ -44,6 +51,7 @@ export const FilterMenu = () => {
       >
         Фильтр
       </Button>
+
       <Drawer
         transitionDuration={500}
         anchor='left'
@@ -76,10 +84,49 @@ export const FilterMenu = () => {
             </Button>
           </Box>
           <Divider light />
+          {checked.length > 0 && (
+            <Typography
+              sx={{
+                mt: '10px',
+                mb: '10px',
+              }}
+            >
+              Вибрані фільтры:
+            </Typography>
+          )}
+          <Stack
+            sx={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: 1,
+            }}
+          >
+            {checked.map((c) => (
+              <Stack
+                sx={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  border: '1px solid',
+                  borderColor: 'grey.500',
+                  borderRadius: '20px',
+                  padding: '5px',
+                  flex: 1,
+                }}
+              >
+                <Typography variant='caption' color='grey.500'>
+                  {c.name}
+                </Typography>
+                <IconButton onClick={() => dispatch(removeChecked(c._id))}>
+                  <CloseIcon color='success' fontSize='small' />
+                </IconButton>
+              </Stack>
+            ))}
+          </Stack>
         </Box>
         <Box
           sx={{
-            display: 'flex',
             flexDirection: 'column',
             p: 3,
           }}
@@ -109,8 +156,8 @@ export const FilterMenu = () => {
         >
           {category.map((c, i) => (
             <FormControlLabel
-              key={c._id}
               checked={checked.includes(c)}
+              key={c._id}
               control={<Checkbox onChange={(e) => handleFilter(e.target.checked, c)} />}
               label={c.name}
             />

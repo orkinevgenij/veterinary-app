@@ -1,10 +1,8 @@
-import { Grid, Stack, Typography } from '@mui/material';
-import React from 'react';
+import { Face, Medication, Pets, Science, Vaccines, WbIncandescent } from '@mui/icons-material';
+import { CardActionArea, Grid, Stack, Typography } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import { CardActionArea } from '@mui/material';
-import { Pets, Face, Medication, WbIncandescent, Vaccines, Science } from '@mui/icons-material';
+import React from 'react';
 import { PopularServices } from '../components/PopularServices';
 export const HomeScreen = () => {
   return (

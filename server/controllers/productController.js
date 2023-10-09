@@ -1,6 +1,5 @@
 import Product from '../models/productModel.js';
 import categoryModel from '../models/categoryModel.js';
-
 import asyncHandler from 'express-async-handler';
 import cloudinary from '../config/cloudinary.js';
 import slug from 'slug';
@@ -28,6 +27,7 @@ const createProductController = asyncHandler(async (req, res) => {
     }
   }
 });
+
 //get all products
 const getProductController = asyncHandler(async (req, res) => {
   const products = await Product.find({}).sort({ price: 1 }).populate('category');
@@ -38,6 +38,7 @@ const getProductController = asyncHandler(async (req, res) => {
     throw new Error('Не удалось загрузить товары');
   }
 });
+
 //get products by category
 const getProductsByCategoryController = asyncHandler(async (req, res) => {
   const { slug } = req?.params;
@@ -94,6 +95,7 @@ const updateProductController = asyncHandler(async (req, res) => {
     throw new Error('Не удалось обновить товар');
   }
 });
+
 //delete product
 const deleteProductsController = asyncHandler(async (req, res) => {
   const { pid } = req?.params;
@@ -108,13 +110,14 @@ const deleteProductsController = asyncHandler(async (req, res) => {
   }
 });
 
+//product filters
 const productFilterController = asyncHandler(async (req, res) => {
   const { sortBy } = req.query;
   const { checked, priceFrom, priceUp } = req.body;
-  console.log('req.body:', checked, priceFrom, priceUp);
   let args = {};
   if (checked.length > 0) args.category = checked;
   if (priceFrom || priceUp) args.price = { $gte: priceFrom, $lte: priceUp };
+  console.log(args);
   const filteredProducts = await Product.find(args).sort({ price: sortBy }).populate('category');
   if (filteredProducts) {
     res.status(200).json(filteredProducts);
@@ -124,6 +127,7 @@ const productFilterController = asyncHandler(async (req, res) => {
   }
 });
 
+//search product
 const searchProductController = asyncHandler(async (req, res) => {
   const { keyword } = req.params;
   const product = await Product.find({

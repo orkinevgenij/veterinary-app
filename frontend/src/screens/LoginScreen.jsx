@@ -48,7 +48,6 @@ export const LoginScreen = () => {
       <Paper
         component={Stack}
         sx={{
-          display: 'flex',
           alignItems: 'center',
           padding: '20px',
           margin: '20px auto',

@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import orderModel from '../models/orderModel.js';
+
 //create order
 const createOrderController = asyncHandler(async (req, res) => {
   const { cartItems } = req.body;
@@ -30,8 +31,8 @@ const getUserOrderController = asyncHandler(async (req, res) => {
     throw new Error('Не удалось получить пользовательские заказы');
   }
 });
-//get user all orders
 
+//get user all orders
 const getAllUserOrderController = asyncHandler(async (req, res) => {
   const order = await orderModel.find({}).populate('buyer');
   if (order) {

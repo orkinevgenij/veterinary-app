@@ -1,6 +1,7 @@
 import asyncHandler from 'express-async-handler';
 import categoryModel from '../models/categoryModel.js';
 import slug from 'slug';
+
 //create category
 const createCategoryController = asyncHandler(async (req, res) => {
   const { name } = req?.body;
@@ -16,6 +17,7 @@ const createCategoryController = asyncHandler(async (req, res) => {
     throw new Error('Не удалось создать категорию');
   }
 });
+
 //get all categories
 const getAllCategoryController = asyncHandler(async (req, res) => {
   const category = await categoryModel.find({});
@@ -45,6 +47,7 @@ const updateCategoryController = asyncHandler(async (req, res) => {
     throw new Error('Не удалось обновить категорию');
   }
 });
+
 //remove category
 const removeCategoryController = asyncHandler(async (req, res) => {
   const { cid } = req?.params;

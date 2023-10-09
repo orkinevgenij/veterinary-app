@@ -90,6 +90,7 @@ export const ProductDetails = () => {
                 price: product.price,
                 image: product.image,
                 id: product._id,
+                slug: product.slug,
               })
             }
             endIcon={<ShoppingCartIcon fontSize='large' />}

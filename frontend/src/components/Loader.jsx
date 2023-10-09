@@ -6,12 +6,10 @@ export const Loader = () => {
     <Box
       sx={{
         display: 'flex',
-
         justifyContent: 'center',
-        margin: '0px auto',
         alignItems: 'center',
-        height: '100vh',
-        width: '100vh',
+        height: '100%',
+        width: '100vw',
       }}
     >
       <CircularProgress color='success' />

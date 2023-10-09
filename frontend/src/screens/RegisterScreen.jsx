@@ -1,7 +1,9 @@
 import { HowToReg } from '@mui/icons-material';
-import { Button, Paper, Stack, TextField, Typography } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+import { Paper, Stack, TextField, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 import React, { useEffect } from 'react';
+import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -10,8 +12,6 @@ import * as Yup from 'yup';
 import { Loader } from '../components/Loader';
 import { setCredentials } from '../redux/slices/authSlice';
 import { useRegisterMutation } from '../redux/slices/usersApiSlice';
-import PhoneInput from 'react-phone-input-2';
-import { LoadingButton } from '@mui/lab';
 const formSchema = Yup.object({
   name: Yup.string().required("Введіть ваше И'мя"),
   email: Yup.string().required('Введіть ваш E-mail'),
@@ -62,7 +62,6 @@ export const RegisterScreen = () => {
       <Paper
         component={Stack}
         sx={{
-          display: 'flex',
           alignItems: 'center',
           padding: '20px',
           margin: '20px auto',
@@ -145,11 +144,7 @@ export const RegisterScreen = () => {
         </Typography>
 
         {isLoading && <Loader />}
-        <Stack
-          sx={{
-            display: 'flex',
-          }}
-        >
+        <Stack>
           <LoadingButton
             type='submit'
             variant='contained'

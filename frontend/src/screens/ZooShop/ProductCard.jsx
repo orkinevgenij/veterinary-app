@@ -52,7 +52,6 @@ export const ProductCard = ({ product }) => {
       </CardContent>
       <Stack
         sx={{
-          display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -68,6 +67,7 @@ export const ProductCard = ({ product }) => {
               price: product.price,
               image: product.image,
               id: product._id,
+              slug: product.slug,
             })
           }
         >

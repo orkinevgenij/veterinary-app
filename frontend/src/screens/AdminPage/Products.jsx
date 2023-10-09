@@ -1,6 +1,6 @@
-import React from 'react';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 import {
-  Box,
   IconButton,
   Paper,
   Table,
@@ -10,15 +10,9 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import {
-  useGetProductDetailsQuery,
-  useGetProductsQuery,
-  useRemoveProductMutation,
-} from '../../redux/slices/productsApiSlice';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { useGetProductsQuery, useRemoveProductMutation } from '../../redux/slices/productsApiSlice';
 
 const rowNames = ['ID', 'Название', 'Цена', 'Категория', 'Действие'];
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
+import { Button, Card, CardActions, CardContent, CardMedia } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions, CardMedia, Card, CardContent } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 export const Doctors = () => {
   const navigate = useNavigate();

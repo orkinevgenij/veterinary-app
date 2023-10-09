@@ -85,22 +85,22 @@ export const CreateCategory = () => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
           mb: 3,
         }}
       >
         <TextField
+          sx={{
+            mb: 2,
+          }}
           placeholder='Название'
           value={formik.values.name}
           onChange={formik.handleChange('name')}
           onBlur={formik.handleBlur('name')}
           margin='normal'
         />
-        <Box>
-          <Button type='submit' variant='contained' color='success'>
-            {createLoading ? 'Сохранение...' : 'Добавить'}
-          </Button>
-        </Box>
+        <Button type='submit' variant='contained' color='success'>
+          {createLoading ? 'Сохранение...' : 'Добавить'}
+        </Button>
       </Box>
       <TableContainer component={Paper}>
         <Table aria-label='simple table' minWidth='200px'>

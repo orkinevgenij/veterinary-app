@@ -55,7 +55,6 @@ export const CreateProduct = () => {
       <Paper
         component={Stack}
         sx={{
-          display: 'flex',
           padding: '20px',
           textAlign: 'center',
         }}
@@ -67,7 +66,14 @@ export const CreateProduct = () => {
         <Typography variant='subtitle2' color='#9C27B0'>
           {formik.touched.image && formik.errors.image}
         </Typography>
-        {preview ? <img src={preview} width='200px' height='200px' /> : null}
+        <Box
+          sx={{
+            textAlign: 'center',
+            mt: 2,
+          }}
+        >
+          {preview ? <img src={preview} width='200px' height='200px' /> : null}
+        </Box>
         <TextField
           placeholder='Назва'
           value={formik.values.title}
@@ -116,11 +122,18 @@ export const CreateProduct = () => {
             </MenuItem>
           ))}
         </TextField>
-        <Box>
-          <Button type='submit' variant='contained' color='success'>
+        <Stack>
+          <Button
+            type='submit'
+            variant='contained'
+            color='success'
+            sx={{
+              display: 'block',
+            }}
+          >
             Додати
           </Button>
-        </Box>
+        </Stack>
       </Paper>
     </Stack>
   );

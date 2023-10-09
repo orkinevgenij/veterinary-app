@@ -65,7 +65,6 @@ export const ProfileUpdate = () => {
         <Paper
           component={Stack}
           sx={{
-            display: 'flex',
             alignItems: 'center',
             padding: '20px',
             margin: '20px auto',
@@ -126,11 +125,7 @@ export const ProfileUpdate = () => {
             {formik.touched.confirmPassword && formik.errors.confirmPassword}
           </Typography>
           {isLoading && <Loader />}
-          <Stack
-            sx={{
-              display: 'flex',
-            }}
-          >
+          <Stack>
             <Button
               type='submit'
               variant='contained'
