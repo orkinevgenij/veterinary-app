@@ -26,7 +26,7 @@ export const HomeScreen = () => {
         }}
       >
         <Typography>Данные входа для админа:</Typography>
-        <Typography>login: admin</Typography>
+        <Typography>login: admin@gmail.com</Typography>
         <Typography>password: 12345</Typography>
       </Stack>
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
